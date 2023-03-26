@@ -1,15 +1,16 @@
 import styled from '@emotion/styled'
+import TodoForm from './components/TodoForm'
+import TodoWrapper from './components/TodoWrapper'
 
-const Box = styled.div`
-  color: hotpink;
-  background-color: yellow;
+const Wrapper = styled.div`
+  padding: 2rem;
 `
 
 function App() {
   return (
-    <div className="App">
-      <Box>Box</Box>
-    </div>
+    <Wrapper>
+      <TodoWrapper></TodoWrapper>
+    </Wrapper>
   )
 }
 

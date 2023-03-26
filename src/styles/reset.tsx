@@ -100,6 +100,9 @@ const GlobalStyle = () => (
         font-family: 'Noto Sans KR', 'sans-serif';
         body {
           font-size: 1.6rem;
+          background-color: black;
+          height: 100%;
+          width: 100%;
         }
       }
       ol,
