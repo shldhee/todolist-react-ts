@@ -1,4 +1,7 @@
+import useTodo from '@/context/TodoContext/useTodo'
+import { Todo } from '@/type'
 import styled from '@emotion/styled'
+import { useState } from 'react'
 
 const Form = styled.div`
   width: 100%;
@@ -13,6 +16,7 @@ const Input = styled.input`
   color: rgba(255, 255, 255);
 `
 const Button = styled.div`
+  cursor: pointer;
   width: 40%;
   margin-left: 1.6rem;
   border: rgba(69, 172, 78, 0.8);
@@ -23,10 +27,33 @@ const Button = styled.div`
 `
 
 const TodoForm = () => {
+  const { todoList, setTodoListHandler } = useTodo()
+  const [todoText, setTodoText] = useState('')
+  const todoInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoText(e.target.value)
+  }
+  const todoAddHandler = () => {
+    // todoList에 상태는 inActive로 추가
+    const newTodo: Todo = {
+      id: todoList.length + 1,
+      content: todoText,
+      status: 'inActive',
+    }
+    setTodoListHandler([...todoList, newTodo])
+    setTodoText('')
+  }
+  const todoAddEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter' || todoText === '') return
+    todoAddHandler()
+  }
   return (
     <Form>
-      <Input />
-      <Button>ADD TODO</Button>
+      <Input
+        value={todoText}
+        onInput={todoInputHandler}
+        onKeyUp={todoAddEnterHandler}
+      />
+      <Button onClick={todoAddHandler}>ADD TODO</Button>
     </Form>
   )
 }

@@ -11,13 +11,6 @@ const Wrapper = styled.div`
 
 const TodoWrapper = () => {
   const { todoList } = useTodo()
-  // const [todoList, setTodoList] = useState<Todo[]>([
-  //   {
-  //     status: 'active',
-  //     id: 1,
-  //     content: '투두리스트를 만들어보자',
-  //   },
-  // ])
   return (
     <Wrapper>
       <TodoForm />
