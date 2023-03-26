@@ -1,3 +1,4 @@
+import { Status } from '@/context/TodoContext/TodoProvider'
 import useTodo from '@/context/TodoContext/useTodo'
 import { Todo } from '@/type'
 import styled from '@emotion/styled'
@@ -35,7 +36,7 @@ const RemoveButton = styled.button`
 `
 
 const TodoItem = ({ status, content, id }: Todo) => {
-  const { todoList, setTodoListHandler } = useTodo()
+  const { todoList, setTodoList } = useTodo()
   const toggleTodoHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
@@ -50,12 +51,12 @@ const TodoItem = ({ status, content, id }: Todo) => {
         return item
       }
     })
-    setTodoListHandler(updatedTodoList)
+    setTodoList(updatedTodoList)
   }
 
   const removeTodoHandler = () => {
     const updatedTodoList = todoList.filter((item) => item.id !== id)
-    setTodoListHandler(updatedTodoList)
+    setTodoList(updatedTodoList)
   }
 
   return (
@@ -63,7 +64,7 @@ const TodoItem = ({ status, content, id }: Todo) => {
       <LeftWrapper>
         <CheckBox
           type="checkbox"
-          checked={status === 'active'}
+          checked={status === Status.active}
           onChange={toggleTodoHandler}
         />
         <TodoText>{content}</TodoText>

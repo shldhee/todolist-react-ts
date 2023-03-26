@@ -1,3 +1,5 @@
+import { Status } from '@/context/TodoContext/TodoProvider'
+import useTodo from '@/context/TodoContext/useTodo'
 import styled from '@emotion/styled'
 
 const Wrapper = styled.div`
@@ -6,9 +8,10 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: center;
 `
-const Button = styled.button`
+const Button = styled.button<{ active: boolean }>`
   padding: 0.6rem;
   color: ${(props) => props.color};
+  background-color: ${(props) => (props.active ? 'purple' : 'black')};
   font-size: 1.2rem;
   border-width: 1px;
   border-style: solid;
@@ -18,12 +21,44 @@ const Button = styled.button`
   }
 `
 
+const FilterButtonConfig = [
+  {
+    color: 'yellow',
+    status: Status.all,
+    label: 'ALL',
+  },
+  {
+    color: 'green',
+    status: Status.active,
+    label: 'ACTIVE(처리중)', // 처리중
+  },
+  {
+    color: 'orange',
+    status: Status.inActive,
+    label: 'INACTIVE(처리완료)', // 처리완료
+  },
+]
+
 const TodoFilter = () => {
+  const { todoStatus, setTodoStatus } = useTodo()
+
+  const clickButtonHandler = (status: Status) => {
+    setTodoStatus(status)
+  }
   return (
     <Wrapper>
-      <Button color="yellow">ALL</Button>
-      <Button color="green">ACTIVE</Button>
-      <Button color="orange">INACTIVE</Button>
+      {FilterButtonConfig.map(({ color, status, label }) => {
+        return (
+          <Button
+            key={status}
+            color={color}
+            active={todoStatus === status}
+            onClick={() => clickButtonHandler(status)}
+          >
+            {label}
+          </Button>
+        )
+      })}
     </Wrapper>
   )
 }

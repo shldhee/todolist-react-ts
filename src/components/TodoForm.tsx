@@ -27,19 +27,19 @@ const Button = styled.div`
 `
 
 const TodoForm = () => {
-  const { todoList, setTodoListHandler } = useTodo()
+  const { todoList, setTodoList } = useTodo()
   const [todoText, setTodoText] = useState('')
   const todoInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodoText(e.target.value)
   }
   const todoAddHandler = () => {
-    // todoList에 상태는 inActive로 추가
+    if (todoText === '') return
     const newTodo: Todo = {
       id: todoList.length + 1,
       content: todoText,
-      status: 'inActive',
+      status: 'active',
     }
-    setTodoListHandler([...todoList, newTodo])
+    setTodoList([...todoList, newTodo])
     setTodoText('')
   }
   const todoAddEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
