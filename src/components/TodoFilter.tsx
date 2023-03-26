@@ -13,7 +13,7 @@ const Button = styled.button`
   border-width: 1px;
   border-style: solid;
   border-color: ${(props) => props.color};
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-left: 1rem;
   }
 `

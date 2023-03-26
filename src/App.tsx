@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import TodoForm from './components/TodoForm'
 import TodoWrapper from './components/TodoWrapper'
+import { TodoProvider } from './context/TodoContext/TodoProvider'
 
 const Wrapper = styled.div`
   padding: 2rem;
@@ -9,7 +10,9 @@ const Wrapper = styled.div`
 function App() {
   return (
     <Wrapper>
-      <TodoWrapper></TodoWrapper>
+      <TodoProvider>
+        <TodoWrapper></TodoWrapper>
+      </TodoProvider>
     </Wrapper>
   )
 }

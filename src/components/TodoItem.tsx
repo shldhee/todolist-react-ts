@@ -1,5 +1,6 @@
+import useTodo from '@/context/TodoContext/useTodo'
+import { Todo } from '@/type'
 import styled from '@emotion/styled'
-import { useState } from 'react'
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,13 +34,34 @@ const RemoveButton = styled.button`
   font-size: 1.2rem;
 `
 
-const TodoItem = () => {
-  const [status, setStatus] = useState(false)
+const TodoItem = ({ status, content, id }: Todo) => {
+  const { todoList, setTodoListHandler } = useTodo()
+  const toggleTodoHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    // 해당 id값 찾아서 status 변경하고 todoList 갱신
+    const updatedTodoList = todoList.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          status: event.target.checked ? 'active' : 'inActive',
+        }
+      } else {
+        return item
+      }
+    })
+    setTodoListHandler(updatedTodoList)
+  }
+
   return (
     <Wrapper>
       <LeftWrapper>
-        <CheckBox type="radio" checked={status} />
-        <TodoText>JSP</TodoText>
+        <CheckBox
+          type="checkbox"
+          checked={status === 'active'}
+          onChange={toggleTodoHandler}
+        />
+        <TodoText>{content}</TodoText>
       </LeftWrapper>
       <RemoveButton>REMOVE</RemoveButton>
     </Wrapper>

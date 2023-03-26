@@ -1,3 +1,4 @@
+import useTodo from '@/context/TodoContext/useTodo'
 import styled from '@emotion/styled'
 import TodoFilter from './TodoFilter'
 import TodoForm from './TodoForm'
@@ -9,11 +10,19 @@ const Wrapper = styled.div`
 `
 
 const TodoWrapper = () => {
+  const { todoList } = useTodo()
+  // const [todoList, setTodoList] = useState<Todo[]>([
+  //   {
+  //     status: 'active',
+  //     id: 1,
+  //     content: '투두리스트를 만들어보자',
+  //   },
+  // ])
   return (
     <Wrapper>
       <TodoForm />
       <TodoFilter />
-      <TodoList />
+      <TodoList list={todoList} />
     </Wrapper>
   )
 }
