@@ -53,6 +53,11 @@ const TodoItem = ({ status, content, id }: Todo) => {
     setTodoListHandler(updatedTodoList)
   }
 
+  const removeTodoHandler = () => {
+    const updatedTodoList = todoList.filter((item) => item.id !== id)
+    setTodoListHandler(updatedTodoList)
+  }
+
   return (
     <Wrapper>
       <LeftWrapper>
@@ -63,7 +68,7 @@ const TodoItem = ({ status, content, id }: Todo) => {
         />
         <TodoText>{content}</TodoText>
       </LeftWrapper>
-      <RemoveButton>REMOVE</RemoveButton>
+      <RemoveButton onClick={removeTodoHandler}>REMOVE</RemoveButton>
     </Wrapper>
   )
 }
