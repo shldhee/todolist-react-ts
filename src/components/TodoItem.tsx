@@ -41,16 +41,11 @@ const TodoItem = ({ status, content, id }: Todo) => {
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     // 해당 id값 찾아서 status 변경하고 todoList 갱신
-    const updatedTodoList = todoList.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          status: event.target.checked ? 'active' : 'inActive',
-        }
-      } else {
-        return item
-      }
-    })
+    const updatedTodoList = todoList.map((item) =>
+      item.id === id
+        ? { ...item, status: event.target.checked ? 'active' : 'inActive' }
+        : item
+    )
     setTodoList(updatedTodoList)
   }
 
