@@ -1,7 +1,7 @@
-import useTodo from '@/context/TodoContext/useTodo'
-import { Todo } from '@/type'
-import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
+import { Todo } from '@/type'
+import useTodo from '@/context/TodoContext/useTodo'
+import styled from '@emotion/styled'
 import TodoFilter from './TodoFilter'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
@@ -9,6 +9,7 @@ import TodoList from './TodoList'
 const Wrapper = styled.div`
   max-width: 800px;
   width: 100%;
+  margin: 0 auto;
 `
 
 const TodoWrapper = () => {
