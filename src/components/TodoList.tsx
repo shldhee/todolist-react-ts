@@ -1,4 +1,3 @@
-import useTodo from '@/context/TodoContext/useTodo'
 import { Todo } from '@/type'
 import styled from '@emotion/styled'
 import TodoItem from './TodoItem'
@@ -13,7 +12,6 @@ const Wrapper = styled.div`
 `
 
 const TodoList = ({ list }: TodoListProps) => {
-  const { todoStatus } = useTodo()
   if (list.length === 0) return <Wrapper>아무것도 없댜!!!!!!!!</Wrapper>
 
   return (
